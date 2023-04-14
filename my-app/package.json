@@ -16,7 +16,7 @@
     "styled-reset": "^4.4.2",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://jeongeum.github.io/React-Todo/",
+  "homepage": "https://jeongeum.github.io/React-Todo",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
