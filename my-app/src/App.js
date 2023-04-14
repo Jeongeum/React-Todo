@@ -1,3 +1,4 @@
+import { useState, useRef, useCallback } from "react";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import CreateTodo from "./components/CreateTodo";
@@ -18,6 +19,13 @@ background-color: aliceblue;
 `;
 
 function App() {
+  const todos = {
+    todo: {
+      id: 1,
+      text: "리액트 공부하기",
+      check: false,
+    },
+  };
   return (
     <>
       <GlobalStyle />
