@@ -15,7 +15,8 @@ export default function CreateTodo({ setTodoList }) {
         {
           id: todoId,
           text: inputValue,
-          checked: false,
+          isComplete: false,
+          isUpdating: false,
         },
       ]);
       setTodoId((prev) => prev + 1);
