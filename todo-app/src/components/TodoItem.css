@@ -1,0 +1,8 @@
+.checked {
+  color: green;
+}
+
+.checkedText {
+  text-decoration: line-through;
+  color: green;
+}
