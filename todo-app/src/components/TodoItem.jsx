@@ -9,6 +9,7 @@ export default function TodoItem({
   item,
   onRemove,
   onEdit,
+  onEnterEdit,
 }) {
   const { id } = item;
   return (
@@ -17,12 +18,20 @@ export default function TodoItem({
         <div>
           <input type="checkbox" />
         </div>
+        {isUpdating ? (
+          <input type="text" onKeyDown={(e) => onEnterEdit(e, id)}></input>
+        ) : (
+          text
+        )}
 
-        {text}
-        <button onClick={() => onEdit(id)}>
-          수정
-          {/* <BsFillPencilFill /> */}
-        </button>
+        {isUpdating ? (
+          <></>
+        ) : (
+          <button onClick={() => onEdit(id)}>
+            수정
+            {/* <BsFillPencilFill /> */}
+          </button>
+        )}
         <button onClick={() => onRemove(id)}>
           삭제
           {/* <FaTrash /> */}
