@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "./components/Container.jsx";
 import Counter from "./components/Counter.jsx";
 import CreateTodo from "./components/CreateTodo.jsx";
@@ -7,48 +7,53 @@ import TodoList from "./components/TodoList";
 
 function App() {
   const [todoList, setTodoList] = useState([]);
-  const onRemove = (id) => {
-    setTodoList(todoList.filter((todo) => todo.id !== id));
+  const [inputValue, setInputValue] = useState("");
+  const [todoId, setTodoId] = useState(0);
+
+  // 투두 입력 시
+  const onChangeInput = (e) => {
+    const { value } = e.target;
+    setInputValue(value);
   };
 
-  const onEdit = (id) => {
-    setTodoList(
-      todoList.map((todo) =>
-        todo.id === id ? { ...todo, isUpdating: !todo.isUpdating } : todo
-      )
-    );
-  };
-
-  const onEnterEdit = (e, id) => {
-    console.log(todoList);
-    if (e.key === "Enter") {
-      setTodoList(
-        todoList.map(
-          (todo) => {
-            if (todo.id === id) {
-              return { ...todo, text: e.target.value, isUpdating: false };
-            }
-            return todo;
-          }
-
-          // todo.id === id
-          //   ? { ...todo, text: e.target.value, isUpating: false }
-          //   : todo
-        )
-      );
+  // 등록 버튼 클릭
+  const onClickAddTodo = () => {
+    if (inputValue) {
+      setTodoList((prev) => [
+        ...prev,
+        {
+          id: todoId,
+          text: inputValue,
+          isComplete: false,
+          isUpdating: false,
+        },
+      ]);
+      setTodoId((prev) => prev + 1);
+      setInputValue("");
     }
   };
+
+  // 렌더링 시, 로컬스토리지의 투두리스트 가져와서 출력
+  useEffect(() => {
+    const localTodoList = localStorage.getItem("todoListData");
+    if (localTodoList) {
+      setTodoList(JSON.parse(localTodoList));
+    }
+  }, []);
+  // todolist와 todoId 업데이트 시, 로컬스토리지에 저장
+  useEffect(() => {
+    localStorage.setItem("todoListData", JSON.stringify(todoList));
+  }, [todoList, todoId]);
   return (
     <Container>
       <Title />
-      <Counter />
-      <CreateTodo setTodoList={setTodoList} />
-      <TodoList
-        todoList={todoList}
-        onRemove={onRemove}
-        onEdit={onEdit}
-        onEnterEdit={onEnterEdit}
+      {/* <Counter /> */}
+      <CreateTodo
+        onChangeInput={onChangeInput}
+        onClickAddTodo={onClickAddTodo}
+        inputValue={inputValue}
       />
+      <TodoList todoList={todoList} setTodoList={setTodoList} />
     </Container>
   );
 }
