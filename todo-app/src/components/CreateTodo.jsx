@@ -1,28 +1,10 @@
 import React, { useState } from "react";
 
-export default function CreateTodo({ setTodoList }) {
-  const [inputValue, setInputValue] = useState("");
-  const [todoId, setTodoId] = useState(0);
-
-  const onChangeInput = (e) => {
-    const { value } = e.target;
-    setInputValue(value);
-  };
-  const onClickAddTodo = () => {
-    if (inputValue) {
-      setTodoList((prev) => [
-        ...prev,
-        {
-          id: todoId,
-          text: inputValue,
-          isComplete: false,
-          isUpdating: false,
-        },
-      ]);
-      setTodoId((prev) => prev + 1);
-      setInputValue("");
-    }
-  };
+export default function CreateTodo({
+  onChangeInput,
+  onClickAddTodo,
+  inputValue,
+}) {
   return (
     <>
       <input
