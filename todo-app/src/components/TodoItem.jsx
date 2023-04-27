@@ -5,7 +5,7 @@ export default function TodoItem({
   todoList,
   setTodoList,
   text,
-  isComplete,
+  done,
   isUpdating,
   item,
 }) {
@@ -42,7 +42,7 @@ export default function TodoItem({
     setTodoList(
       todoList.map((todo) => {
         if (todo.id === id) {
-          return { ...todo, isComplete: !isComplete };
+          return { ...todo, done: !done };
         }
         return todo;
       })
@@ -58,10 +58,10 @@ export default function TodoItem({
       <li key={id} className="todoitemWrapper">
         <div className="todoitemCont">
           <span
-            className={isComplete ? "checked" : ""}
+            className={done ? "checked" : ""}
             onClick={() => checkToggle(id)}
           >
-            {isComplete ? "✅ " : "☑️ "}
+            {done ? "✅ " : "☑️ "}
           </span>
 
           {isUpdating ? (
@@ -71,9 +71,7 @@ export default function TodoItem({
               className="updateTodoInput"
             ></input>
           ) : (
-            <span className={isComplete ? "checked checkedText" : ""}>
-              {text}
-            </span>
+            <span className={done ? "checked checkedText" : ""}>{text}</span>
           )}
         </div>
 

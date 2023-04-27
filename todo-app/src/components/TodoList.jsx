@@ -12,7 +12,7 @@ export default function TodoList({ todoList, setTodoList }) {
             todoList={todoList}
             setTodoList={setTodoList}
             text={item.text}
-            isComplete={item.isComplete}
+            done={item.done}
             isUpdating={item.isUpdating}
             item={item}
           />

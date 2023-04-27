@@ -1,0 +1,8 @@
+.countWrapper {
+  align-self: flex-start;
+  margin: 15px 0 0 25px;
+}
+
+.countWrapper span:nth-child(1) {
+  margin-right: 7px;
+}

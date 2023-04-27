@@ -10,6 +10,8 @@ function App() {
   const [todoList, setTodoList] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [todoId, setTodoId] = useState(0);
+  const unDoneTodoList = todoList.filter((todo) => !todo.done);
+  const doneTodoList = todoList.filter((todo) => todo.done);
 
   // 투두 입력 시
   const onChangeInput = (e) => {
@@ -25,7 +27,7 @@ function App() {
         {
           id: todoId,
           text: inputValue,
-          isComplete: false,
+          done: false,
           isUpdating: false,
         },
       ]);
@@ -48,12 +50,12 @@ function App() {
   return (
     <Container>
       <Title />
-      {/* <Counter /> */}
       <CreateTodo
         onChangeInput={onChangeInput}
         onClickAddTodo={onClickAddTodo}
         inputValue={inputValue}
       />
+      <Counter unDoneTodoList={unDoneTodoList} doneTodoList={doneTodoList} />
       <TodoList todoList={todoList} setTodoList={setTodoList} />
     </Container>
   );
