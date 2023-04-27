@@ -1,0 +1,19 @@
+.createTodoInput {
+  width: 320px;
+  height: 40px;
+  border-radius: 7px;
+  border: none;
+  padding: 5px;
+
+  background-color: #daecc8;
+}
+
+.addBtn {
+  width: 65px;
+  height: 40px;
+  border-radius: 7px;
+  border: none;
+  margin-left: 15px;
+
+  background-color: #a1bf83;
+}
