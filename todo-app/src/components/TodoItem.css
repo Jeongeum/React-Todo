@@ -21,7 +21,7 @@
 
 .checkedText {
   text-decoration: line-through;
-  color: green;
+  color: #6a6a6a;
 }
 
 .updateTodoInput {
