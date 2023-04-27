@@ -2,7 +2,7 @@ import React from "react";
 import TodoItem from "./TodoItem";
 import "./TodoList.css";
 
-export default function TodoList({ todoList, setTodoList }) {
+const TodoList = ({ todoList, setTodoList }) => {
   return (
     <div className="todolistWrapper">
       <ul className="todolists">
@@ -20,4 +20,6 @@ export default function TodoList({ todoList, setTodoList }) {
       </ul>
     </div>
   );
-}
+};
+
+export default React.memo(TodoList);

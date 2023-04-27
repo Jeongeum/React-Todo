@@ -1,6 +1,8 @@
 import React from "react";
 import "./Container.css";
 
-export default function Container({ children }) {
+const Container = ({ children }) => {
   return <div className="Container">{children}</div>;
-}
+};
+
+export default React.memo(Container);

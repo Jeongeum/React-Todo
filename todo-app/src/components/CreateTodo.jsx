@@ -1,11 +1,7 @@
 import React from "react";
 import "./CreateTodo.css";
 
-export default function CreateTodo({
-  onChangeInput,
-  onClickAddTodo,
-  inputValue,
-}) {
+const CreateTodo = ({ onChangeInput, onClickAddTodo, inputValue }) => {
   return (
     <div>
       <input
@@ -19,4 +15,6 @@ export default function CreateTodo({
       </button>
     </div>
   );
-}
+};
+
+export default React.memo(CreateTodo);

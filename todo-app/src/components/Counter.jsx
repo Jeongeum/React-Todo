@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Counter.css";
 
-export default function Counter({ unDoneTodoList, doneTodoList }) {
-  // todo 상태관리
-  let [todoCount, setTodoCount] = useState(0);
-  let [todoFinished, setTodoFinished] = useState(0);
+const Counter = ({ unDoneTodoList, doneTodoList }) => {
   return (
     <>
       <div className="countWrapper">
@@ -13,4 +10,6 @@ export default function Counter({ unDoneTodoList, doneTodoList }) {
       </div>
     </>
   );
-}
+};
+
+export default React.memo(Counter);
