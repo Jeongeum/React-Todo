@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./TodoItem.css";
 // key를 list에서 props로 받아오면 안된다. props로 각 item을 받아와서 여기에서 펼쳐줘야한다.
 export default function TodoItem({
@@ -10,8 +10,9 @@ export default function TodoItem({
   item,
 }) {
   const { id } = item;
-  console.log(todoList);
+  const [newText, setNewText] = useState(text);
 
+  console.log(todoList);
   // 수정 버튼 클릭
   const onEdit = (id) => {
     setTodoList(
@@ -21,14 +22,18 @@ export default function TodoItem({
     );
   };
 
+  // 수정 내용 반영
+  const onChangeEditInput = (e) => {
+    setNewText(e.target.value);
+  };
+
   // 수정 후 엔터
   const onEnterEdit = (e, id) => {
-    console.log(todoList);
     if (e.key === "Enter") {
       setTodoList(
         todoList.map((todo) => {
           if (todo.id === id) {
-            return { ...todo, text: e.target.value, isUpdating: false };
+            return { ...todo, text: newText, isUpdating: false };
           }
           return todo;
         })
@@ -38,7 +43,6 @@ export default function TodoItem({
 
   // 체크박스 체크
   const checkToggle = (id) => {
-    console.log("체크");
     setTodoList(
       todoList.map((todo) => {
         if (todo.id === id) {
@@ -53,6 +57,7 @@ export default function TodoItem({
   const onRemove = (id) => {
     setTodoList(todoList.filter((todo) => todo.id !== id));
   };
+
   return (
     <>
       <li key={id} className="todoitemWrapper">
@@ -68,6 +73,8 @@ export default function TodoItem({
             <input
               type="text"
               onKeyDown={(e) => onEnterEdit(e, id)}
+              onChange={(e) => onChangeEditInput(e)}
+              value={newText}
               className="updateTodoInput"
             ></input>
           ) : (
@@ -75,7 +82,7 @@ export default function TodoItem({
           )}
         </div>
 
-        {isUpdating ? (
+        {done || isUpdating ? (
           <></>
         ) : (
           <button onClick={() => onEdit(id)} className="todoitemBtn">

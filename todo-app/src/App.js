@@ -20,12 +20,15 @@ function App() {
   };
 
   // 등록 버튼 클릭
+  // +) 에러사항 : useState가 새로고침 시 초기화 되어서 todoId 값이 다시 0이 된다.
+  // 투두를 등록하고 새로고침한 뒤에 다시 등록하면 id가 다시 0부터 시작하기 때문에 id값이 중복이 된다.
+  // 그래서 우선은 Date.now()로 해결한다.
   const onClickAddTodo = () => {
     if (inputValue) {
       setTodoList((prev) => [
         ...prev,
         {
-          id: todoId,
+          id: Date.now(),
           text: inputValue,
           done: false,
           isUpdating: false,
@@ -43,10 +46,12 @@ function App() {
       setTodoList(JSON.parse(localTodoList));
     }
   }, []);
+
   // todolist와 todoId 업데이트 시, 로컬스토리지에 저장
   useEffect(() => {
     localStorage.setItem("todoListData", JSON.stringify(todoList));
   }, [todoList, todoId]);
+
   return (
     <Container>
       <Title />
