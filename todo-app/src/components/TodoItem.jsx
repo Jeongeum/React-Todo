@@ -55,24 +55,38 @@ export default function TodoItem({
   };
   return (
     <>
-      <li key={id}>
-        <span
-          className={isComplete ? "checked" : ""}
-          onClick={() => checkToggle(id)}
-        >
-          {isComplete ? "◼" : "◻"}
-        </span>
+      <li key={id} className="todoitemWrapper">
+        <div className="todoitemCont">
+          <span
+            className={isComplete ? "checked" : ""}
+            onClick={() => checkToggle(id)}
+          >
+            {isComplete ? "✅ " : "☑️ "}
+          </span>
+
+          {isUpdating ? (
+            <input
+              type="text"
+              onKeyDown={(e) => onEnterEdit(e, id)}
+              className="updateTodoInput"
+            ></input>
+          ) : (
+            <span className={isComplete ? "checked checkedText" : ""}>
+              {text}
+            </span>
+          )}
+        </div>
 
         {isUpdating ? (
-          <input type="text" onKeyDown={(e) => onEnterEdit(e, id)}></input>
+          <></>
         ) : (
-          <span className={isComplete ? "checked checkedText" : ""}>
-            {text}
-          </span>
+          <button onClick={() => onEdit(id)} className="todoitemBtn">
+            수정
+          </button>
         )}
-
-        {isUpdating ? <></> : <button onClick={() => onEdit(id)}>수정</button>}
-        <button onClick={() => onRemove(id)}>삭제</button>
+        <button onClick={() => onRemove(id)} className="todoitemBtn">
+          삭제
+        </button>
       </li>
     </>
   );
