@@ -12,7 +12,7 @@ export default function Title() {
   return (
     <section className="title-wrapper">
       <h2>
-        {year}년 {month}월 {date}일 <span>{day}요일</span>
+        {year}년 {month}월 {date}일 <span className="day">{day}요일</span>
       </h2>
     </section>
   );
