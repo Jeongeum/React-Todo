@@ -1,18 +1,11 @@
 import React, { useState } from "react";
 import "./TodoItem.css";
 // key를 list에서 props로 받아오면 안된다. props로 각 item을 받아와서 여기에서 펼쳐줘야한다.
-export default function TodoItem({
-  todoList,
-  setTodoList,
-  text,
-  done,
-  isUpdating,
-  item,
-}) {
+
+const TodoItem = ({ todoList, setTodoList, text, done, isUpdating, item }) => {
   const { id } = item;
   const [newText, setNewText] = useState(text);
 
-  console.log(todoList);
   // 수정 버튼 클릭
   const onEdit = (id) => {
     setTodoList(
@@ -57,7 +50,6 @@ export default function TodoItem({
   const onRemove = (id) => {
     setTodoList(todoList.filter((todo) => todo.id !== id));
   };
-
   return (
     <>
       <li key={id} className="todoitemWrapper">
@@ -66,7 +58,7 @@ export default function TodoItem({
             className={done ? "checked" : ""}
             onClick={() => checkToggle(id)}
           >
-            {done ? "✅ " : "☑️ "}
+            {isUpdating ? "" : done ? "✅ " : "☑️ "}
           </span>
 
           {isUpdating ? (
@@ -95,4 +87,6 @@ export default function TodoItem({
       </li>
     </>
   );
-}
+};
+
+export default React.memo(TodoItem);
