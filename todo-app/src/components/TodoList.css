@@ -1,0 +1,25 @@
+.todolistWrapper {
+  width: 400px;
+  height: 250px;
+  border-radius: 7px;
+  margin: 8px auto;
+
+  background-color: #f2ffe5;
+}
+
+.todolists {
+  width: 405px;
+  height: 250px;
+  overflow-y: scroll;
+}
+
+.todolists::-webkit-scrollbar {
+  background-color: #f2ffe5;
+  width: 5px;
+  border-radius: 20px;
+}
+.todolists::-webkit-scrollbar-thumb {
+  background-color: #c8d3bd;
+  width: 3px;
+  border-radius: 20px;
+}
