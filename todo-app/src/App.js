@@ -9,7 +9,6 @@ import TodoList from "./components/TodoList";
 function App() {
   const [todoList, setTodoList] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [todoId, setTodoId] = useState(0);
   const unDoneTodoList = todoList.filter((todo) => !todo.done);
   const doneTodoList = todoList.filter((todo) => todo.done);
 
@@ -34,7 +33,7 @@ function App() {
           isUpdating: false,
         },
       ]);
-      setTodoId((prev) => prev + 1);
+
       setInputValue("");
     }
   };
@@ -50,7 +49,7 @@ function App() {
   // todolist와 todoId 업데이트 시, 로컬스토리지에 저장
   useEffect(() => {
     localStorage.setItem("todoListData", JSON.stringify(todoList));
-  }, [todoList, todoId]);
+  }, [todoList]);
 
   return (
     <Container>
