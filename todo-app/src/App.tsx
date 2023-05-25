@@ -1,9 +1,10 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import "./reset.css";
-import Container from "./components/Container.jsx";
-import Counter from "./components/Counter.jsx";
-import CreateTodo from "./components/CreateTodo.jsx";
-import Title from "./components/Title.jsx";
+import Container from "./components/Container";
+import Counter from "./components/Counter";
+import CreateTodo from "./components/CreateTodo";
+import Title from "./components/Title";
 import TodoList from "./components/TodoList";
 
 function App() {
