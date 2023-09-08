@@ -1,20 +1,28 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import "./reset.css";
-import Container from "./components/Container";
-import Counter from "./components/Counter";
-import CreateTodo from "./components/CreateTodo";
-import Title from "./components/Title";
-import TodoList from "./components/TodoList";
+import React from 'react';
+import { useEffect, useState } from 'react';
+import './reset.css';
+import Container from './components/Container';
+import Counter from './components/Counter';
+import CreateTodo from './components/CreateTodo';
+import Title from './components/Title';
+import TodoList from './components/TodoList';
+
+// type
+export type Todo = {
+  id: number;
+  text: string;
+  done: boolean;
+  isUpdating: boolean;
+};
 
 function App() {
-  const [todoList, setTodoList] = useState([]);
-  const [inputValue, setInputValue] = useState("");
+  const [todoList, setTodoList] = useState<Todo[]>([]);
+  const [inputValue, setInputValue] = useState<string>('');
   const unDoneTodoList = todoList.filter((todo) => !todo.done);
   const doneTodoList = todoList.filter((todo) => todo.done);
 
   // 투두 입력 시
-  const onChangeInput = (e) => {
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setInputValue(value);
   };
@@ -35,13 +43,13 @@ function App() {
         },
       ]);
 
-      setInputValue("");
+      setInputValue('');
     }
   };
 
   // 렌더링 시, 로컬스토리지의 투두리스트 가져와서 출력
   useEffect(() => {
-    const localTodoList = localStorage.getItem("todoListData");
+    const localTodoList = localStorage.getItem('todoListData');
     if (localTodoList) {
       setTodoList(JSON.parse(localTodoList));
     }
@@ -49,7 +57,7 @@ function App() {
 
   // todolist와 todoId 업데이트 시, 로컬스토리지에 저장
   useEffect(() => {
-    localStorage.setItem("todoListData", JSON.stringify(todoList));
+    localStorage.setItem('todoListData', JSON.stringify(todoList));
   }, [todoList]);
 
   return (

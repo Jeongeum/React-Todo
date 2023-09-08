@@ -1,7 +1,17 @@
-import React from "react";
-import "./CreateTodo.css";
+import React from 'react';
+import './CreateTodo.css';
 
-const CreateTodo = ({ onChangeInput, onClickAddTodo, inputValue }) => {
+type CreateTodoType = {
+  onChangeInput: React.ChangeEventHandler<HTMLInputElement>;
+  onClickAddTodo: () => void;
+  inputValue: string;
+};
+
+const CreateTodo: React.FC<CreateTodoType> = ({
+  onChangeInput,
+  onClickAddTodo,
+  inputValue,
+}) => {
   return (
     <div>
       <input

@@ -2,10 +2,10 @@
   "compilerOptions": {
     "jsx": "react",
     "allowJs": true,
-    "target": "ES5",
+    "target": "ES6",
     "outDir": "./dist",
     "moduleResolution": "Node",
-    "lib": ["ES2015", "DOM", "DOM.Iterable"],
+    "lib": ["ES6", "DOM", "DOM.Iterable"],
     "esModuleInterop": true
   },
   "include": ["./src/**/*"],

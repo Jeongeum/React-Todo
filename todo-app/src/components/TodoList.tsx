@@ -1,8 +1,14 @@
-import React from "react";
-import TodoItem from "./TodoItem";
-import "./TodoList.css";
+import React from 'react';
+import TodoItem from './TodoItem';
+import './TodoList.css';
+import { Todo } from '../App';
 
-const TodoList = ({ todoList, setTodoList }) => {
+type TodoListType = {
+  todoList: Todo[];
+  setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>;
+};
+
+const TodoList = ({ todoList, setTodoList }: TodoListType) => {
   return (
     <div className="todolistWrapper">
       <ul className="todolists">
@@ -11,9 +17,6 @@ const TodoList = ({ todoList, setTodoList }) => {
             key={item.id}
             todoList={todoList}
             setTodoList={setTodoList}
-            text={item.text}
-            done={item.done}
-            isUpdating={item.isUpdating}
             item={item}
           />
         ))}

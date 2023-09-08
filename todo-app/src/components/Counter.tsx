@@ -1,7 +1,13 @@
-import React from "react";
-import "./Counter.css";
+import React from 'react';
+import './Counter.css';
+import { Todo } from '../App';
 
-const Counter = ({ unDoneTodoList, doneTodoList }) => {
+type CouterType = {
+  unDoneTodoList: Todo[];
+  doneTodoList: Todo[];
+};
+
+const Counter = ({ unDoneTodoList, doneTodoList }: CouterType) => {
   return (
     <>
       <div className="countWrapper">

@@ -1,9 +1,16 @@
-import React, { useState } from "react";
-import "./TodoItem.css";
+import React, { useState } from 'react';
+import './TodoItem.css';
+import { Todo } from '../App';
 // key를 list에서 props로 받아오면 안된다. props로 각 item을 받아와서 여기에서 펼쳐줘야한다.
 
-const TodoItem = ({ todoList, setTodoList, text, done, isUpdating, item }) => {
-  const { id } = item;
+type TodoItemType = {
+  todoList: Todo[];
+  setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>;
+  item: Todo;
+};
+
+const TodoItem = ({ todoList, setTodoList, item }: TodoItemType) => {
+  const { id, text, done, isUpdating } = item;
   const [newText, setNewText] = useState(text);
 
   // 수정 버튼 클릭
@@ -22,7 +29,7 @@ const TodoItem = ({ todoList, setTodoList, text, done, isUpdating, item }) => {
 
   // 수정 후 엔터
   const onEnterEdit = (e, id) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       setTodoList(
         todoList.map((todo) => {
           if (todo.id === id) {
@@ -55,10 +62,10 @@ const TodoItem = ({ todoList, setTodoList, text, done, isUpdating, item }) => {
       <li key={id} className="todoitemWrapper">
         <div className="todoitemCont">
           <span
-            className={done ? "checked" : ""}
+            className={done ? 'checked' : ''}
             onClick={() => checkToggle(id)}
           >
-            {isUpdating ? "" : done ? "✅ " : "☑️ "}
+            {isUpdating ? '' : done ? '✅ ' : '☑️ '}
           </span>
 
           {isUpdating ? (
@@ -70,7 +77,7 @@ const TodoItem = ({ todoList, setTodoList, text, done, isUpdating, item }) => {
               className="updateTodoInput"
             ></input>
           ) : (
-            <span className={done ? "checked checkedText" : ""}>{text}</span>
+            <span className={done ? 'checked checkedText' : ''}>{text}</span>
           )}
         </div>
 
